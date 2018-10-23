@@ -19,10 +19,11 @@ public class Weapon : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0) && isCooldown==false)
+        if (Input.GetMouseButton(0) && isCooldown==false)
         {
             //Time.time - Измерва времето от началото на играта
             timeWhenLastShooted = Time.time;
+
             isCooldown = true;
             Debug.Log("Shooted");
             Shoot();
@@ -43,5 +44,6 @@ public class Weapon : MonoBehaviour {
 
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         transform.up = direction;
+        transform.Rotate(0, 0, 90);
     }
 }
