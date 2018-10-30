@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour {
     public KeyCode right;
 
     public float speed;
+    public float myX;
+    public float myY;
 
     public int directionOfPlayer = 0;
     /*
@@ -25,7 +27,12 @@ public class PlayerController : MonoBehaviour {
     void Start () {
 		
 	}
-	
+	void Update()
+    {
+
+        myX = transform.position.x;
+        myY = transform.position.y;
+    }
 	// Update is called once per frame
 	void FixedUpdate () {
         //movement script
@@ -65,6 +72,7 @@ public class PlayerController : MonoBehaviour {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
         }
+        /*
         if (directionOfPlayer == 0)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -90,7 +98,7 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        /*
+        
         Vector3 mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
