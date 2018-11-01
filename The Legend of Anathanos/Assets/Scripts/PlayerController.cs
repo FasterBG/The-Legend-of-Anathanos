@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour {
     public KeyCode left;
     public KeyCode right;
 
+    public float health;
     public float speed;
     public float myX;
     public float myY;
@@ -105,5 +107,18 @@ public class PlayerController : MonoBehaviour {
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         firePoint.transform.up = direction;
         */
+    }
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        
+        Destroy(gameObject);
     }
 }

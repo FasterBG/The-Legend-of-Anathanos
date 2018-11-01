@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController : MonoBehaviour {
+public class EnemyBulletController : MonoBehaviour
+{
 
     public float speed;
     public float damage;
+
+    private Transform player;
 
     private Vector2 target;
 
     void Start()
     {
-        target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        target = player.position;
     }
 
     void Update()
@@ -24,10 +28,10 @@ public class BulletController : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        EnemyController enemy=hitInfo.GetComponent<EnemyController>();
-        if (enemy != null)
+        PlayerController playerInfo = hitInfo.GetComponent<PlayerController>();
+        if (playerInfo != null)
         {
-            enemy.TakeDamage(damage);
+            playerInfo.TakeDamage(damage);
             Destroy(gameObject);
         }
 

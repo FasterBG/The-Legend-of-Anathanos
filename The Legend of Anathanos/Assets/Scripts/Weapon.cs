@@ -12,7 +12,6 @@ public class Weapon : MonoBehaviour {
     private bool oldPointinRight = true;
 
     public float cooldownValue;
-    public float bulletSpeed;
 
     public GameObject bulletPre;
     public Transform firePoint;
@@ -40,7 +39,7 @@ public class Weapon : MonoBehaviour {
     }
     void Shoot()
     {  
-        GameObject bullet = Instantiate(bulletPre, firePoint.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPre, firePoint.position, firePoint.rotation);
     }
     void faceMouse()
     {
@@ -51,7 +50,6 @@ public class Weapon : MonoBehaviour {
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         transform.up = direction;
         transform.Rotate(0, 0, 90);
-        Debug.Log(transform.localRotation.z);
         if(transform.localRotation.z>0.7f)
         {
             pointingRight = false;
@@ -61,10 +59,7 @@ public class Weapon : MonoBehaviour {
         {
             pointingRight = true;
         }
-        if (pointingRight != oldPointinRight)
-        {
-            Debug.Log("Rotate");
-        }
         oldPointinRight = pointingRight;
     }
+    
 }
