@@ -12,19 +12,9 @@ public class EnemyBulletController : MonoBehaviour
 
     private Vector2 target;
 
-    void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = player.position;
-    }
-
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, target) < 0.2f)
-        {
-            Destroy(gameObject);
-        }
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {

@@ -7,20 +7,16 @@ public class BulletController : MonoBehaviour {
     public float speed;
     public float damage;
 
+    private Vector2 direction;
+
     private Vector2 target;
 
-    void Start()
-    {
-        target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    }
+
+    public Rigidbody2D rb;
 
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, target) < 0.2f)
-        {
-            Destroy(gameObject);
-        }
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {

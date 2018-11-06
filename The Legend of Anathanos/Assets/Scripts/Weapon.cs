@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour {
 
     private float timeWhenLastShooted;
-    private Vector2 direction;
+    public Vector2 direction;
 
     private bool isCooldown=false;
     private bool pointingRight = true;
