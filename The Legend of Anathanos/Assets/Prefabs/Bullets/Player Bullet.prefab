@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 212073555073874146}
   - component: {fileID: 50809618295883982}
   - component: {fileID: 60180434828605456}
-  - component: {fileID: 114237294779457914}
+  - component: {fileID: 114492042780756588}
   m_Layer: 0
-  m_Name: Bullet Prefab 1
+  m_Name: Player Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ PolygonCollider2D:
       - {x: -0.5, y: 0.5}
       - {x: 0.5, y: 0.5}
       - {x: 0.5, y: -0.5}
---- !u!114 &114237294779457914
+--- !u!114 &114492042780756588
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,11 +99,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1171171753978670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbdeadff388b83f4a9702535723cf75e, type: 3}
+  m_Script: {fileID: 11500000, guid: 53f7c3c3a2615d84e80d1c19aa31adf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  damage: 30
+  speed: 15
+  damage: 3
+  rb: {fileID: 50809618295883982}
 --- !u!212 &212073555073874146
 SpriteRenderer:
   m_ObjectHideFlags: 1
