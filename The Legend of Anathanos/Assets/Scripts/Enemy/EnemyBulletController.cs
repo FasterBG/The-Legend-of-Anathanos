@@ -8,6 +8,8 @@ public class EnemyBulletController : MonoBehaviour
     public float speed;
     public float damage;
 
+    public GameObject impacteEffect;
+
     private Transform player;
 
     private Vector2 target;
@@ -22,8 +24,8 @@ public class EnemyBulletController : MonoBehaviour
         if (playerInfo != null)
         {
             playerInfo.TakeDamage(damage);
-            Destroy(gameObject);
         }
-
+        
+        Destroy(gameObject);
     }
 }

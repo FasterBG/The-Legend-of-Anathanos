@@ -5,7 +5,9 @@ using UnityEngine;
 public class BulletController : MonoBehaviour {
 
     public float speed;
-    public float damage;
+    public float damage,buff_time;
+
+    public GameObject impactEffect;
 
     private Vector2 direction;
 
@@ -20,11 +22,15 @@ public class BulletController : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        EnemyController enemy=hitInfo.GetComponent<EnemyController>();
-        if (enemy != null)
+        if (hitInfo.tag != "SpawnPoint")
         {
-            enemy.TakeDamage(damage);
+            EnemyController enemy = hitInfo.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+            Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

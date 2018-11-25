@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeapon : MonoBehaviour
-{
+public class EnemyWeapon : MonoBehaviour{
 
     private Vector2 direction;
 
@@ -13,14 +12,14 @@ public class EnemyWeapon : MonoBehaviour
 
     private bool pointingRight;
 
-    private Transform player;
+    private GameObject player;
 
     public GameObject bulletPre;
     public Transform firePoint;
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         timeBtwShots = startTimeBtwShots;
     }
     void Update()
@@ -41,7 +40,7 @@ public class EnemyWeapon : MonoBehaviour
     }
     void facePlayer()
     {
-        Vector2 direction = new Vector2(player.position.x-transform.position.x, player.position.y-transform.position.y);
+        Vector2 direction = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y);
         transform.up = direction;
         transform.Rotate(0, 0, 90);
         if (transform.localRotation.z > 0.7f)

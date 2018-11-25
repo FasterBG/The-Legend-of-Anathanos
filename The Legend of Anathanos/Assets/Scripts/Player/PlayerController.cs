@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -11,10 +12,11 @@ public class PlayerController : MonoBehaviour {
     public KeyCode left;
     public KeyCode right;
 
+    public Text moneyText;
+
     public float health;
     public float speed;
-    public float myX;
-    public float myY;
+    public int money = 0;
 
     public int directionOfPlayer = 0;
     /*
@@ -25,17 +27,11 @@ public class PlayerController : MonoBehaviour {
      */
     public Rigidbody2D rb;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	void Update()
+    void Start()
     {
-
-        myX = transform.position.x;
-        myY = transform.position.y;
+        moneyText.text = "Money: " + money.ToString();
     }
-	// Update is called once per frame
+
 	void FixedUpdate () {
         //movement script
         if (Input.GetKey(right))
@@ -74,39 +70,6 @@ public class PlayerController : MonoBehaviour {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
             }
         }
-        /*
-        if (directionOfPlayer == 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else
-        {
-            if(directionOfPlayer == 1)
-            {
-                transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            }
-            else
-            {
-                if (directionOfPlayer == 2)
-                {
-                    transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-                }
-                else
-                {
-                    if(directionOfPlayer == 3)
-                    {
-                        transform.rotation = Quaternion.Euler(0f, 0f, 270f);
-                    }
-                }
-            }
-        }
-        
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        firePoint.transform.up = direction;
-        */
     }
     public void TakeDamage(float damage)
     {
@@ -118,7 +81,6 @@ public class PlayerController : MonoBehaviour {
     }
     void Die()
     {
-        
-        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

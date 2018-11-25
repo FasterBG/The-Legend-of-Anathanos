@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damage: 3
+  impactEffect: {fileID: 1724644802726090, guid: 4fdc29dff96280f4a9d2d1b8a9702675,
+    type: 2}
   rb: {fileID: 50809618295883982}
 --- !u!212 &212073555073874146
 SpriteRenderer:

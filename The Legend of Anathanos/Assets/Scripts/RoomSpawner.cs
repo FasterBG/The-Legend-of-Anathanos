@@ -54,7 +54,7 @@ public class RoomSpawner : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("SpawnPoint")){
-            if(other.GetComponent<RoomSpawner>().spawned==false && spawned == false)
+            if(other.GetComponent<RoomSpawner>().spawned==false && spawned==true)
             {
                 Instantiate(templates.closedRooms[rand], transform.position, transform.rotation);
                 Debug.Log("*");
