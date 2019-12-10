@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour {
 
-    public int openingDirection;
+    [SerializeField]
+    private int openingDirection;
 
     private bool spawned = false;
     /*
@@ -17,11 +18,11 @@ public class RoomSpawner : MonoBehaviour {
     private RoomTemplates templates;
     private int rand;
 
-
     void Start()
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        Invoke("Spawn",0.1f);
+        //Spawn();
+        Invoke("Spawn", 1f);
     }
 
     void Spawn()
@@ -30,37 +31,69 @@ public class RoomSpawner : MonoBehaviour {
         {
             if (openingDirection == 1)
             {
-                rand = Random.Range(0, templates.bot.Length);
-                Instantiate(templates.bot[rand], transform.position, transform.rotation);
+                if (templates.areThereEnoughRooms())
+                {
+                    Instantiate(templates.closedRooms[2], transform.position, transform.rotation);
+                }
+                else
+                {
+                    rand = Random.Range(0, templates.bot.Length);
+                    Instantiate(templates.bot[rand], transform.position, transform.rotation);
+                }
             }
             else if (openingDirection == 2)
             {
-                rand = Random.Range(0, templates.top.Length);
-                Instantiate(templates.top[rand], transform.position, transform.rotation);
+                if (templates.areThereEnoughRooms())
+                {
+                    Instantiate(templates.closedRooms[0], transform.position, transform.rotation);
+                }
+                else
+                {
+                    rand = Random.Range(0, templates.top.Length);
+                    Instantiate(templates.top[rand], transform.position, transform.rotation);
+                }
             }
             else if (openingDirection == 3)
             {
-                rand = Random.Range(0, templates.left.Length);
-                Instantiate(templates.left[rand], transform.position, transform.rotation);
+
+                if (templates.areThereEnoughRooms())
+                {
+                    Instantiate(templates.closedRooms[1], transform.position, transform.rotation);
+                }
+                else
+                {
+                    rand = Random.Range(0, templates.left.Length);
+                    Instantiate(templates.left[rand], transform.position, transform.rotation);
+                }
             }
             else if (openingDirection == 4)
             {
-                rand = Random.Range(0, templates.right.Length);
-                Instantiate(templates.right[rand], transform.position, transform.rotation);
+
+                if (templates.areThereEnoughRooms())
+                {
+                    Instantiate(templates.closedRooms[3], transform.position, transform.rotation);
+                }
+                else
+                {
+                    rand = Random.Range(0, templates.right.Length);
+                    Instantiate(templates.right[rand], transform.position, transform.rotation);
+                }
             }
+            templates.addedRoom();
         spawned = true;
         }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("SpawnPoint")){
-            if(other.GetComponent<RoomSpawner>().spawned==false && spawned==true)
+        if (other.tag == "SpawnPoint")
+        {
+            if (other.GetComponent<RoomSpawner>() == null)
             {
-                Instantiate(templates.closedRooms[rand], transform.position, transform.rotation);
-                Debug.Log("*");
+                Destroy(gameObject);
+            }else if(other.GetComponent<RoomSpawner>().spawned == true)
+            {
                 Destroy(gameObject);
             }
-            spawned = true;
         }
     }
 }
